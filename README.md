@@ -40,14 +40,7 @@ for i in ${seq[@]}
     done
 ```
 
-## Reflection
-- Why do you think that many biologists skip the step of making their code publicly available and adding documentation?
-	- Many biologists likely skip publication and documentation of their code because it adds additional steps and complications to the process of writing the script. Biologists who are very busy may feel that it is not worthwhile.
-- Why do you think I asked you to write sanity checks into your code? Do you see room for additional sanity checks to be added?
-	- The sanity checks helped me while I was writing the code to make sure that the variables I was using were defined correctly, but they also help someone who downloads my code to see what is happening when they run it. Sanity checks also give outputs that allow users to see the results of code as it runs.
-- In my experience, loops are the hardest concept for students to learn. Why do you think this is? What struggles did you have when trying to write a loop into your code?
-	- I can see why loops are a difficult concept for students to learn. I think that it can be difficult to envision the flow of code, which is why diagrams like the ones in our lecture videos are so helpful. The main difficulty I had when writing my loop was making it run the correct number of iterations. At first, before I defined $seq as an array, I was trying to use numbers to define the iterations, but when I attempted to use $seqnum to make it run the correct number of times, the loop only performed one iteration with the number ID from the variable.
-
+## Results
 | Sequence Name | GC Percentage |
 | ----------- | ----------- |
 | >DI245396.1 | 43.00% |
@@ -59,3 +52,11 @@ for i in ${seq[@]}
 | >NM_001178613.2 | 45.00% |
 | >AY558240.1 | 51.00% |
 | >AB052924.1 | 51.00% |
+
+## Reflection
+- Why do you think that many biologists skip the step of making their code publicly available and adding documentation?
+	- Many biologists likely skip publication and documentation of their code because it adds additional steps and complications to the process of writing the script. Biologists who are very busy may feel that it is not worthwhile.
+- Why do you think I asked you to write sanity checks into your code? Do you see room for additional sanity checks to be added?
+	- The sanity checks helped me while I was writing the code to make sure that the variables I was using were defined correctly, but they also help someone who downloads my code to see what is happening when they run it. Sanity checks also give outputs that allow users to see the results of code as it runs.
+- In my experience, loops are the hardest concept for students to learn. Why do you think this is? What struggles did you have when trying to write a loop into your code?
+	- I can see why loops are a difficult concept for students to learn. I think that it can be difficult to envision the flow of code, which is why diagrams like the ones in our lecture videos are so helpful. The main difficulty I had when writing my loop was making it run the correct number of iterations. At first, before I defined $seq as an array, I was trying to use numbers to define the iterations, but when I attempted to use $seqnum to make it run the correct number of times, the loop only performed one iteration with the number ID from the variable.
