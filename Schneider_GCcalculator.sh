@@ -9,8 +9,6 @@ if [ $# -gt 1 ]; then
 #checking that provided file exists and is a FASTA file
 if [ ! -e $1 ]; then
 	echo "The provided file does not exist."; exit; fi
-if ( $1 ! =~ \.fa ); then
-	echo "Please make sure the file input is a FASTA file with .fa extension."; exit; fi
 
 #separating headers and sequences and counting sequences
 seq=($(grep -v ">" $1))
