@@ -1,35 +1,20 @@
 # Schneider_Project2
 
+## Motivation
+This script was written to take a FASTA file and evaluate the percentage of sequences of DNA that are G or C nucleotides.
 
-#checking for file input
-if [ $# -lt 1 ]; then
-	echo "Please include one file when attempting to run this script."; exit; fi
-if [ $# -gt 1 ]; then
-	echo "Please only include one file when attempting to run this script."; exit; fi
+## Explanation
+This script requires a Fasta file as a command line input when being run. So first the script checks for that one file was input when the command was run, followed by a check that the input file exists. The user will receive error messages with instructions if the wrong number of files are input or if the input file does not exist. 
 
-#checking that provided file exists and is a FASTA file
-if [ ! -e $1 ]; then
-	echo "The provided file does not exist."; exit; fi
-if ( $1 ! =~ \.fa ); then
-	echo "Please make sure the file input is a FASTA file with .fa extension."; exit; fi
+The script separates the headers and sequences from the input FASTA file. It looks for any lines that contain ">" and includes them in the $name array and the remaining lines in the $seq array. It also defines a variable for the number of sequences from the file, $seqnum.
 
-#separating headers and sequences and counting sequences
-seq=($(grep -v ">" $1))
-name=($(grep ">" $1))
-seqnum=`echo ${#seq[@]}`
+The script creates the output file "GCcount.txt" if it does not already exist. It defines an array, $head for the header of the file and puts it into the previously defined file, removing any other contents of the file that exist.
 
-#sanity check for number of sequences
-echo "There are $seqnum sequences."
+The script uses a for loop to run the correct number of iterations, one for each sequence. Before the for loop is initiated, a looping variable is set to 0 in order to correctly pull from arrays. For example, in the first run of the loop, we want the first element of the $name array, which is defined as the 0th.
 
-#creating GCcount.txt file, setting up header array, and putting it into the file
-touch GCcount.txt
-head=( "Sequence name" "GC Percentage" )
-echo ${head[@]} > GCcount.txt
+The for loop is written to run one iteration per array element in the $seq array. In the for loop, the script first echos a sanity check with the run number based on the looping variable. The element of the $name array corresponding to the current element of the $seq array being run is stored as a loop variable, $lname, using the looping variable to identify the element. A sanity check is performed to output the name of the sequence that was just defined as $lname. Thhe script counts the total characters in the string, to use as a divisor in the math the loop performs. The script uses grep to find cases of C and G, case insensitive, and counts them using wc. These two numbers are added to find total instances of C or G, and the percent of the length is calculated using bc. A sanity check is performed that outputs the values of $len, $c, $g, and $cg. An array is defined containing the name of the sequence being run and the percent as calculated. This is added to the GCcount.txt file. Finally, the script uses expr to add 1 to the looping variable.
 
-#setting looping variable to 0 in order to correctly pull from arrays
-lc=0
-
-for i in ${seq[@]}
+`for i in ${seq[@]}
     do 
     	#identifying the iteration of the loop
 	echo "Run $lc..."
@@ -51,4 +36,17 @@ for i in ${seq[@]}
 	namperc=( $lname $perc% )
 	echo ${namperc[@]} >> GCcount.txt
 	lc=`expr $lc + 1`
-    done
+    done`
+
+## Reflection
+- Why do you think that many biologists skip the step of making their code publicly available and adding documentation?
+	- Many biologists likely skip publication and documentation of their code because it adds additional steps and complications to the process of writing the script. Biologists who are very busy may feel that it is not worthwhile.
+- Why do you think I asked you to write sanity checks into your code? Do you see room for additional sanity checks to be added?
+	- The sanity checks helped me while I was writing the code to make sure that the variables I was using were defined correctly, but they also help someone who downloads my code to see what is happening when they run it. Sanity checks also give outputs that allow users to see the results of code as it runs.
+- In my experience, loops are the hardest concept for students to learn. Why do you think this is? What struggles did you have when trying to write a loop into your code?
+	- I can see why loops are a difficult concept for students to learn. I think that it can be difficult to envision the flow of code, which is why diagrams like the ones in our lecture videos are so helpful. The main difficulty I had when writing my loop was making it run the correct number of iterations. At first, before I defined $seq as an array, I was trying to use numbers to define the iterations, but when I attempted to use $seqnum to make it run the correct number of times, the loop only performed one iteration with the number ID from the variable.
+
+| Syntax | Description |
+| ----------- | ----------- |
+| Header | Title |
+| Paragraph | Text |
